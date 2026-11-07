@@ -1,0 +1,10 @@
+# Personal Claude Code guide: local learning contract, not part of the project
+CLAUDE.md
+
+# macOS Finder metadata
+.DS_Store
+
+# IntelliJ IDEA project settings (machine-specific)
+.idea/
+
+
