@@ -7,4 +7,7 @@ CLAUDE.md
 # IntelliJ IDEA project settings (machine-specific)
 .idea/
 
+# Local secrets (commit .env.example instead)
+.env
+
 

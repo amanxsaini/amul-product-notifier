@@ -1,0 +1,21 @@
+# Local development services. Start: docker compose up -d   Stop: docker compose down
+services:
+  postgres:
+    image: postgres:18          # pin the major version so upgrades are deliberate
+    container_name: amul-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"             # host:container, so the app on your Mac can connect
+    volumes:
+      - pgdata:/var/lib/postgresql   # named volume: data survives container removal
+    healthcheck:                # reports "healthy" only once Postgres accepts connections
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:
